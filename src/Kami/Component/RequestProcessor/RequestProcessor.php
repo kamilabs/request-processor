@@ -40,11 +40,11 @@ class RequestProcessor implements RequestProcessorInterface
             $artifacts = $step->execute($request);
 
             if ($artifacts instanceof ArtifactCollection) {
-                $artifacts->forAll(function ($key, Artifact $artifact) {
+                $artifacts->forAll(function($key, Artifact $artifact) {
                     if ($this->artifacts->containsKey($key)) {
-                       throw new ProcessingException(
-                           sprintf('Collection already contains artifact with key %s', $key)
-                       );
+                        throw new ProcessingException(
+                            sprintf('Collection already contains artifact with key %s', $key)
+                        );
                     }
                     $this->addArtifact($artifact);
                 });
