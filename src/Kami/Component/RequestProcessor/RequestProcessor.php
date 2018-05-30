@@ -35,7 +35,6 @@ class RequestProcessor implements RequestProcessorInterface
     public function executeStrategy(AbstractStrategy $strategy, Request $request) : Response
     {
         while ($step = $strategy->getNextStep()) {
-
             $step->setArtifacts($this->artifacts->getRequested($step->getRequiredArtifacts()));
             $artifacts = $step->execute($request);
 
@@ -78,10 +77,11 @@ class RequestProcessor implements RequestProcessorInterface
      */
     public function getArtifact(string $name) : Artifact
     {
-        if (!$this->artifacts->containsKey($name)) {
+        $artifact = $this->artifacts->get($name)
+        if (!$artifact instanceof Artifact) {
             throw new ProcessingException(sprintf('You don\'t have "%s" artifact yet', $name));
         }
 
-        return $this->artifacts->get($name);
+        return $artifact;
     }
 }
