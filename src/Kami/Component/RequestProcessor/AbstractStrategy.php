@@ -30,5 +30,7 @@ abstract class AbstractStrategy implements StrategyInterface
     public function addStep(StepInterface $step): StrategyInterface
     {
         $this->steps->enqueue($step);
+
+        return $this;
     }
 }
