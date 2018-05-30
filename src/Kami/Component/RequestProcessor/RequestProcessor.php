@@ -77,7 +77,7 @@ class RequestProcessor implements RequestProcessorInterface
      */
     public function getArtifact(string $name) : Artifact
     {
-        $artifact = $this->artifacts->get($name)
+        $artifact = $this->artifacts->get($name);
         if (!$artifact instanceof Artifact) {
             throw new ProcessingException(sprintf('You don\'t have "%s" artifact yet', $name));
         }
