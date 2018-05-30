@@ -20,7 +20,7 @@ abstract class AbstractStrategy implements StrategyInterface
 
     public function getNextStep(): ?StepInterface
     {
-        if($this->steps->count() == 0) {
+        if ($this->steps->count() == 0) {
             return null;
         }
 
