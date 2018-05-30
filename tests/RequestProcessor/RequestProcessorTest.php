@@ -6,6 +6,7 @@ use Kami\Component\RequestProcessor\Step\StepInterface;
 use Kami\Component\RequestProcessor\AbstractStrategy;
 use Kami\Component\RequestProcessor\ArtifactCollection;
 use Kami\Component\RequestProcessor\Response;
+use Kami\Component\RequestProcessor\ProcessingException;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 
@@ -35,6 +36,13 @@ class RequestProcessorTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals('data', $response->getData());
         $this->assertEquals(200, $response->getStatus());
+    }
+
+    public function testExecuteStrategyWithDublicatedArtifacts()
+    {
+        $requestProcessor = new RequestProcessor();
+        $this->expectException(ProcessingException::class);
+        $requestProcessor->executeStrategy($this->createDublicatingStrategyMock(), new Request());
     }
 
     public function testGetExistingArtifact()
@@ -78,4 +86,17 @@ class RequestProcessorTest extends TestCase
         return $strategy;
     }
 
+
+    private function createDublicatingStrategyMock()
+    {
+        $strategy = $this->createMock(AbstractStrategy::class);
+        $strategy->expects($this->exactly(2))
+            ->method('getNextStep')
+            ->willReturnOnConsecutiveCalls(
+                $this->createStepMock(new ArtifactCollection([new Artifact('data', 'data')])),
+                $this->createStepMock(new ArtifactCollection([new Artifact('data', 'data')]))
+            );
+
+        return $strategy;
+    }
 }
