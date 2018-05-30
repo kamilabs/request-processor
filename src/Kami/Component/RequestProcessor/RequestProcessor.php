@@ -26,13 +26,13 @@ class RequestProcessor implements RequestProcessorInterface
     }
 
     /**
-     * @param StrategyInterface $strategy
+     * @param AbstractStrategy $strategy
      * @param Request $request
      * @return Response
      *
      * @throws ProcessingException
      */
-    public function executeStrategy(StrategyInterface $strategy, Request $request) : Response
+    public function executeStrategy(AbstractStrategy $strategy, Request $request) : Response
     {
         while ($step = $strategy->getNextStep()) {
 

@@ -67,7 +67,7 @@ class ArtifactCollection extends ArrayCollection
     /**
      * @param array $requestedArtifacts
      *
-     * @return array
+     * @return ArtifactCollection
      */
     public function getRequested(array $requestedArtifacts) : ArtifactCollection
     {

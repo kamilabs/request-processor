@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 interface RequestProcessorInterface
 {
     /**
-     * @param StrategyInterface $strategy
+     * @param AbstractStrategy $strategy
      * @param Request $request
      *
      * @return Response
      */
-    public function executeStrategy(StrategyInterface $strategy, Request $request) : Response;
+    public function executeStrategy(AbstractStrategy $strategy, Request $request) : Response;
 
     /**
      * @param Artifact $artifact
