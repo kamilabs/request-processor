@@ -28,9 +28,9 @@ abstract class AbstractStep implements StepInterface
     /**
      * @param ArtifactCollection $artifacts
      *
-     * @return AbstractStep
+     * @return StepInterface
      */
-    public function setArtifacts(ArtifactCollection $artifacts): AbstractStep
+    public function setArtifacts(ArtifactCollection $artifacts): StepInterface
     {
         $this->artifacts = $artifacts;
 
