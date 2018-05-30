@@ -1,4 +1,8 @@
-# KAMI RequestProcessor
+# KAMI RequestProcessor 
+
+[![Build Status](https://travis-ci.org/kamilabs/request-processor.svg?branch=master)](https://travis-ci.org/kamilabs/request-processor) 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kamilabs/request-processor/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kamilabs/request-processor/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/kamilabs/request-processor/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kamilabs/request-processor/?branch=master)
 
 ## Abstract
 Intention of this component is providing more abstract layer
