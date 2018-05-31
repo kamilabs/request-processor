@@ -22,5 +22,10 @@
         "psr-4": {
             "Kami\\Component\\RequestProcessor\\": "./src/Kami/Component/RequestProcessor"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
