@@ -3,6 +3,7 @@
 namespace Kami\Component\RequestProcessor\Step;
 
 use Kami\Component\RequestProcessor\ArtifactCollection;
+use Kami\Component\RequestProcessor\ProcessingException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -14,6 +15,8 @@ interface StepInterface
 {
     /**
      * @param Request $request
+     *
+     * @throws ProcessingException
      *
      * @return ArtifactCollection
      */

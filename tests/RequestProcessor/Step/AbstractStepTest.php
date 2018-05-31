@@ -43,4 +43,32 @@ class AbstractStepTest extends TestCase
             new ArtifactCollection([new Artifact('test', 'test')])
         ));
     }
+
+    public function testGetArtifact()
+    {
+        $this->step->setArtifacts(
+            new ArtifactCollection([new Artifact('test', 'value')])
+        );
+
+        $reflection = new \ReflectionClass($this->step);
+        $method = $reflection->getMethod('getArtifact');
+        $method->setAccessible(true);
+
+        $artifact = $method->invokeArgs($this->step, ['test']);
+        $this->assertEquals('value', $artifact);
+    }
+
+    public function testGetNotExistingArtifact()
+    {
+        $this->step->setArtifacts(
+            new ArtifactCollection([new Artifact('test', 'value')])
+        );
+
+        $reflection = new \ReflectionClass($this->step);
+        $method = $reflection->getMethod('getArtifact');
+        $method->setAccessible(true);
+        $this->expectException(\Kami\Component\RequestProcessor\ProcessingException::class);
+        $method->invokeArgs($this->step, ['not-existing']);
+
+    }
 }
