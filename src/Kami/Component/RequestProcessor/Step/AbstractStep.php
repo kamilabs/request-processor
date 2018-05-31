@@ -3,6 +3,7 @@
 namespace Kami\Component\RequestProcessor\Step;
 
 use Kami\Component\RequestProcessor\ArtifactCollection;
+use Kami\Component\RequestProcessor\ProcessingException;
 
 /**
  * Class AbstractStep
@@ -35,5 +36,21 @@ abstract class AbstractStep implements StepInterface
         $this->artifacts = $artifacts;
 
         return $this;
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     *
+     * @throws ProcessingException
+     */
+    protected function getArtifact($name)
+    {
+        $artifact = $this->artifacts->get($name);
+        if(!$artifact) {
+            throw new ProcessingException(sprintf('You don\'t have "%s" artifact yet.'));
+        }
+
+        return $artifact->getValue();
     }
 }
