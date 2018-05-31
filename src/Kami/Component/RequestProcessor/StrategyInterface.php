@@ -2,6 +2,7 @@
 
 
 namespace Kami\Component\RequestProcessor;
+use Kami\Component\RequestProcessor\Step\StepInterface;
 
 
 /**
@@ -12,7 +13,14 @@ namespace Kami\Component\RequestProcessor;
 interface StrategyInterface
 {
     /**
-     * @return array
+     * StrategyInterface constructor.
+     *
+     * @param array $steps
      */
-    public static function getSteps() : array;
+    public function __construct(array $steps);
+
+    /**
+     * @return StepInterface|null
+     */
+    public function getNextStep(): ?StepInterface;
 }

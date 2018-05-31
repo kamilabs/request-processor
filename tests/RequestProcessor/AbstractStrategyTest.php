@@ -18,31 +18,9 @@ class AbstractStrategyTest extends TestCase
         $step1 = $this->createMock(StepInterface::class);
         $step2 = $this->createMock(StepInterface::class);
 
-        $this->strategy = new class extends AbstractStrategy {
+        $this->strategy = new class ([$step1, $step2]) extends AbstractStrategy {
 
-            /**
-             * @var array
-             */
-            protected static $testSteps = [];
-
-            /**
-             * @param array $steps
-             */
-            public static function addTestSteps(array $steps)
-            {
-                static::$testSteps = $steps;
-            }
-
-            /**
-             * @return array
-             */
-            public static function getSteps(): array
-            {
-                return static::$testSteps;
-            }
         };
-
-        $this->strategy::addTestSteps([$step1, $step2]);
     }
 
     public function testAddStep()

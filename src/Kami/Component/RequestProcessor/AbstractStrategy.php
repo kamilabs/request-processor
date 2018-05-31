@@ -10,10 +10,10 @@ abstract class AbstractStrategy implements StrategyInterface
 {
     protected $steps;
 
-    public function __construct()
+    public function __construct(array $steps)
     {
         $this->steps = new \SplQueue();
-        foreach ($this->getSteps() as $step) {
+        foreach ($steps as $step) {
             $this->addStep($step);
         }
     }
