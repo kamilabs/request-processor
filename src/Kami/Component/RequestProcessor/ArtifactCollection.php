@@ -67,14 +67,21 @@ class ArtifactCollection extends ArrayCollection
     /**
      * @param array $requestedArtifacts
      *
+     * @throws ProcessingException
+     *
      * @return ArtifactCollection
      */
     public function getRequested(array $requestedArtifacts) : ArtifactCollection
     {
         $requested = [];
-
         foreach ($requestedArtifacts as $requestedArtifact) {
-            $requested[] = $this->get($requestedArtifact);
+            $artifact = $this->get($requestedArtifact);
+            if(!$artifact) {
+                throw new ProcessingException(
+                    sprintf('You don\'t have requested artifact "%s" yet', $requestedArtifact)
+                );
+            }
+            $requested[] = $artifact;
         }
 
         return new ArtifactCollection($requested);

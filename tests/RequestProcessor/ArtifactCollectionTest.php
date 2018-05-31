@@ -39,10 +39,24 @@ class ArtifactCollectionTest extends TestCase
     {
         $artifacts = new ArtifactCollection([
             new Artifact('test', 'test_value'),
-            new Artifact('another', 'another_value')
+            new Artifact('another', 'another_value'),
+            new Artifact('just_for_test', 'another_value')
         ]);
         $requested = $artifacts->getRequested(['test', 'another']);
         $this->assertEquals(2, $requested->count());
+
+        $this->assertEquals('test', $requested->get('test')->getName());
+        $this->assertEquals('another', $requested->get('another')->getName());
+    }
+
+    public function testGetRequestedNotExisting()
+    {
+        $artifacts = new ArtifactCollection([
+            new Artifact('test', 'test_value'),
+            new Artifact('another', 'another_value')
+        ]);
+        $this->expectException(\Kami\Component\RequestProcessor\ProcessingException::class);
+        $artifacts->getRequested(['test', 'not_existing']);
     }
 
     public function testHasRequiredSuccess()
