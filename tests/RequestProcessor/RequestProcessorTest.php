@@ -90,11 +90,12 @@ class RequestProcessorTest extends TestCase
     private function createDublicatingStrategyMock()
     {
         $strategy = $this->createMock(AbstractStrategy::class);
-        $strategy->expects($this->exactly(2))
+        $strategy->expects($this->exactly(3))
             ->method('getNextStep')
             ->willReturnOnConsecutiveCalls(
                 $this->createStepMock(new ArtifactCollection([new Artifact('data', 'data')])),
-                $this->createStepMock(new ArtifactCollection([new Artifact('data', 'data')]))
+                $this->createStepMock(new ArtifactCollection([new Artifact('data', 'data')])),
+                null
             );
 
         return $strategy;
