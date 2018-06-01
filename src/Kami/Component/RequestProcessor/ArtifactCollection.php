@@ -76,7 +76,7 @@ class ArtifactCollection extends ArrayCollection
         $requested = [];
         foreach ($requestedArtifacts as $requestedArtifact) {
             $artifact = $this->get($requestedArtifact);
-            if(!$artifact) {
+            if (!$artifact) {
                 throw new ProcessingException(
                     sprintf('You don\'t have requested artifact "%s" yet', $requestedArtifact)
                 );

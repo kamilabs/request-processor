@@ -47,7 +47,7 @@ abstract class AbstractStep implements StepInterface
     protected function getArtifact($name)
     {
         $artifact = $this->artifacts->get($name);
-        if(!$artifact) {
+        if (!$artifact) {
             throw new ProcessingException(sprintf('You don\'t have "%s" artifact yet.', $name));
         }
 
