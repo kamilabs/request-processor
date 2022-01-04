@@ -13,7 +13,7 @@ class AbstractStrategyTest extends TestCase
      */
     private $strategy;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $step1 = $this->createMock(StepInterface::class);
         $step2 = $this->createMock(StepInterface::class);
