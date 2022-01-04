@@ -16,7 +16,7 @@ class AbstractStepTest extends TestCase
      */
     private $step;
 
-    public function setUp()
+    protected function setUp() : void
     {
         $this->step = new class extends AbstractStep {
             public function execute(Request $request): ArtifactCollection
