@@ -26,11 +26,7 @@ abstract class AbstractStep implements StepInterface
         return get_class($this);
     }
 
-    /**
-     * @param ArtifactCollection $artifacts
-     *
-     * @return StepInterface
-     */
+
     public function setArtifacts(ArtifactCollection $artifacts): StepInterface
     {
         $this->artifacts = $artifacts;
@@ -39,9 +35,6 @@ abstract class AbstractStep implements StepInterface
     }
 
     /**
-     * @param $name
-     * @return mixed
-     *
      * @throws ProcessingException
      */
     protected function getArtifact($name)
